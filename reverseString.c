@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *obrniString(char *);
+char *obrniString(char *, int);
 
 int main(void)
 {
@@ -27,28 +27,27 @@ int main(void)
 
     printf("\n\nIzvorna velicina stringa: %d", sizeof(string));
     printf("\n\nVelicina re-alociranog stringa: %d\n", sizeof(reAllocatedString));
+    
+    printf("\nObrnuti string je: \n");
+    printf("%s\n", obrniString(reAllocatedString, strLen));
 
+    
     return 0;
 }
 
-char *obrniString (char *str)
+char *obrniString (char *str, int strLen)
 {
     int i;
-    int len = 0;
     char c;
 
     if (!str)
         return NULL;
-    while(str[len] != '\0')
-    {
-        len++;
-    }
 
-    for(i = 0; i < (len/2); i++)
+    for(i = 0; i < (strLen/2); i++)
     {
         c = str[i];
-        str [i] = str[len - i - 1];
-        str[len - i - 1] = c;
+        str [i] = str[strLen - i - 1];
+        str[strLen - i - 1] = c;
     }
 
     return str;
